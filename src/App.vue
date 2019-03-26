@@ -1,17 +1,39 @@
 <template>
   <div id="app">
     <img src="./assets/logo.png">
-    <HelloWorld/>
+    {{demo}}
+    <input v-model="ParentText">
+    <Learn @getMsg="getSonMsg" :title="ParentText"/>
   </div>
 </template>
 
 <script>
 import HelloWorld from './components/HelloWorld'
+import VueDemo from './components/VueDemo'
+import Learn from './components/Learn'
 
 export default {
   name: 'App',
+  data(){
+    return{
+      demo:"",
+      title:{
+        name:'Tim',
+      },
+      ParentText:''
+    }
+  },
+
+  methods:{
+    getSonMsg(data){
+      this.demo=data
+    }
+  },
+
   components: {
-    HelloWorld
+    HelloWorld,
+    VueDemo,
+    Learn, //注入
   }
 }
 </script>
